@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #B29474; /* Dusk brown color */
+    background-color: #B29474; /* Dusk brown background */
     color: #fff;
     overflow-x: hidden;
 }
@@ -41,19 +41,45 @@ nav ul li a.active {
     color: #F39C12; /* Highlight on hover and active */
 }
 
+/* Section width relative to content */
 .section {
-    min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    flex-direction: column;
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+    /* Visualized border and shadow */
+    border: 4px solid #fff; /* White border around each section */
+    border-radius: 10px; /* Smooth border corners */
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5); /* Drop shadow */
+    padding: 40px;
+    margin: 20px auto; /* Center the section horizontally */
+    
+    /* Width should fit content but not exceed a max width */
+    width: auto; /* Default width based on content */
+    max-width: 80%; /* Limit the maximum width to avoid very wide sections */
+    background-color: rgba(255, 255, 255, 0.1); /* Light transparent background */
 }
 
 .section.active {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Center alignment for the first section (home) */
+#home {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Left align headlines for all sections except the first one */
+.section:not(#home) h2 {
+    text-align: left;
+    width: 100%;
 }
 
 h1 {
@@ -79,4 +105,29 @@ ul.skills-list {
 ul.skills-list li {
     font-size: 1.2em;
     margin-bottom: 0.5em;
+}
+
+/* Additional styling for job sections */
+.job {
+    margin-bottom: 2em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    .section {
+        padding: 20px;
+        max-width: 90%; /* Adjust max-width for smaller screens */
+    }
+
+    .section:not(#home) h2 {
+        font-size: 1.8em;
+    }
 }
