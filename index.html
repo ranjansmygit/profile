@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soumya Ranjan Behera - Profile</title>
+    <title>Soumya Ranjan Behera - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Main Wrapper -->
     <div id="container">
         <!-- Navigation -->
         <nav>
             <ul>
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
 
@@ -26,6 +25,33 @@
                 <h1>Soumya Ranjan Behera</h1>
                 <h2>Application Security Professional</h2>
                 <p>Bengaluru, India</p>
+                <p>Email: <a href="mailto:ranjan.smy@gmail.com">ranjan.smy@gmail.com</a></p>
+            </div>
+        </section>
+
+        <!-- Skills Section with Search Feature -->
+        <section id="skills" class="section">
+            <div class="content">
+                <h2>Skills</h2>
+                <!--
+                    <ul class="skills-list">
+                    <li>Python, BASH, NodeJS</li>
+                    <li>SQL, Django, REST API</li>
+                    <li>SSL, Telnet, SSH, Firewall</li>
+                    <li>Azure, Kubernetes, GitHub Actions</li>
+                    <li>OWASP, MITRE, SSDLC</li>
+                    <li>TensorFlow, PyTorch, Gradio</li>
+                </ul>
+
+                <!-- Skill Search Visualizer -
+                <h2>Skill Search Visualizer</h2> -->
+                <div id="array"></div>
+
+                <label for="fname">Enter skill to search:</label>
+                <input type="text" id="fname" name="fname">
+                <button id="btn" onclick="Search()">Search</button>
+
+                <div id="text"></div>
             </div>
         </section>
 
@@ -37,36 +63,11 @@
                     <h3>Principal Security Engineer</h3>
                     <p>Ramsoft, India | April 2024 - August 2024</p>
                     <ul>
-                        <li>Led comprehensive threat models, reducing security incidents by 40%.</li>
-                        <li>Integrated static analysis tools, improving vulnerability detection by 30%.</li>
-                        <li>Standardized workflows for cloud security, cutting response times by 25%.</li>
+                        <li>Designed and upheld comprehensive threat models for various application components and systems.</li>
+                        <li>Collaborated with architects and stakeholders to formulate and execute advanced mitigation strategies.</li>
                     </ul>
                 </div>
-                <div class="job">
-                    <h3>Tech Lead</h3>
-                    <p>Wipro, India | May 2022 - September 2023</p>
-                    <ul>
-                        <li>Deployed a web security framework, improving project timelines by 80%.</li>
-                        <li>Integrated Architectural Decision Records across multiple teams.</li>
-                    </ul>
-                </div>
-                <!-- Add other jobs in similar fashion -->
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="section">
-            <div class="content">
-                <h2>Skills</h2>
-                <ul class="skills-list">
-                    <li>Python, BASH, NodeJS</li>
-                    <li>SQL, Django, REST API</li>
-                    <li>SSL, Telnet, SSH, Firewall</li>
-                    <li>Azure, Kubernetes, GitHub Actions</li>
-                    <li>OWASP, MITRE, SSDLC</li>
-                    <li>TensorFlow, PyTorch, Gradio</li>
-                    <!-- Add more skills -->
-                </ul>
+                <!-- Add more jobs as needed -->
             </div>
         </section>
 
@@ -87,6 +88,94 @@
         </section>
     </div>
 
-    <script src="scripts.js"></script>
+    <script>
+        const skillsData = [
+            { skill: 'CyberSecurity', experience: 15 },
+            { skill: 'JavaScript', experience: 8 },
+            { skill: 'Python', experience: 12 },
+            { skill: 'Docker', experience: 5 },
+            { skill: 'NodeJS', experience: 7 },
+            { skill: 'BASH', experience: 14 },
+            { skill: 'Django', experience: 6 },
+            { skill: 'Azure', experience: 4 },
+            { skill: 'Kubernetes', experience: 3 },
+            { skill: 'TensorFlow', experience: 2 }
+        ];
+
+        var container = document.getElementById("array");
+
+        function generatearray() {
+            for (var i = 0; i < skillsData.length; i++) {
+                var skill = skillsData[i].skill;
+                var years = skillsData[i].experience;
+
+                var array_ele = document.createElement("div");
+                array_ele.classList.add("block");
+
+                array_ele.style.height = `${years * 15}px`;
+                array_ele.style.transform = `translate(${i * 60}px)`;
+
+                var array_ele_label = document.createElement("label");
+                array_ele_label.classList.add("block_id");
+                array_ele_label.innerText = skill;
+
+                array_ele.appendChild(array_ele_label);
+                container.appendChild(array_ele);
+            }
+        }
+
+        async function Search(delay = 300) {
+            var blocks = document.querySelectorAll(".block");
+            var output = document.getElementById("text");
+
+            var searchSkill = document.getElementById("fname").value.trim();
+
+            for (var i = 0; i < blocks.length; i += 1) {
+                blocks[i].style.backgroundColor = "#00ffff";
+            }
+
+            output.innerText = "";
+
+            var flag = 0;
+            for (var i = 0; i < blocks.length; i += 1) {
+                blocks[i].style.backgroundColor = "#FF4949";
+
+                await new Promise((resolve) =>
+                    setTimeout(() => {
+                        resolve();
+                    }, delay)
+                );
+
+                var currentSkill = blocks[i].childNodes[0].innerText;
+
+                if (currentSkill.toLowerCase() === searchSkill.toLowerCase()) {
+                    flag = 1;
+                    output.innerText = `Skill "${currentSkill}" found!`;
+                    blocks[i].style.backgroundColor = "#13CE66";
+                    break;
+                } else {
+                    blocks[i].style.backgroundColor = "#00ffff";
+                }
+            }
+
+            if (flag === 0) {
+                output.innerText = `Skill "${searchSkill}" not found.`;
+            }
+        }
+
+        window.addEventListener("load", generatearray);
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
