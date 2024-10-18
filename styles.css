@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #B29474; /* Dusk brown background */
+    background-color: #508760; /* Dusk brown background */
     color: #fff;
     overflow-x: hidden;
 }
@@ -30,7 +30,7 @@ nav ul {
 }
 
 nav ul li a {
-    color: #fff;
+    color: #2c302d;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
@@ -119,19 +119,23 @@ ul.skills-list li {
 }
 
 .block {
-    width: 40px;
+    width: 45px;
     background-color: #13CE66;
     position: absolute;
     bottom: 0px;
+    display: inline-block;
+    text-align: center;
     transition: 0.2s all ease;
 }
 
 .block_id {
     position: absolute;
-    color: black;
-    margin-top: -20px;
+    color: rgb(205, 217, 211);
+    bottom: 100%;
+    margin-bottom: 5px;
     width: 100%;
-    text-align: center;
+    font-size: 12px;
+    text-align: match-parent;
 }
 
 label, input, button {
